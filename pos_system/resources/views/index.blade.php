@@ -1,6 +1,6 @@
 @extends('admin_dashboard')
 @section('admin')
-
+ 
 <div class="content">
 
 <!-- Start Content-->
@@ -44,7 +44,7 @@
                         </div>
                         <div class="col-6">
                             <div class="text-end">
-                                <h3 class="text-dark mt-1">$<span data-plugin="counterup">58,947</span></h3>
+                                <h3 class="text-dark mt-1">$<span data-plugin="counterup">58,94</span></h3>
                                 <p class="text-muted mb-1 text-truncate">Total Revenue</p>
                             </div>
                         </div>

@@ -44,46 +44,81 @@
     <li>
         <a href="#sidebarCrm" data-bs-toggle="collapse">
             <i class="mdi mdi-account-multiple-outline"></i>
-            <span> CRM </span>
+            <span> Customer Manage </span>
             <span class="menu-arrow"></span>
         </a>
         <div class="collapse" id="sidebarCrm">
             <ul class="nav-second-level">
-                <li>
-                    <a href="crm-dashboard.html">Dashboard</a>
-                </li>
-                <li>
-                    <a href="crm-contacts.html">Contacts</a>
-                </li>
+        <li>
+            <a href="{{ route('all-customer') }}">All Customer</a>
+        </li>
+        <li>
+            <a href="{{ route('add-cutomer') }}">Add Customer</a>
+        </li>
                 
                 </li>
             </ul>
         </div>
     </li>
 
-                            <li>
-                                <a href="#sidebarEmail" data-bs-toggle="collapse">
-                                    <i class="mdi mdi-email-multiple-outline"></i>
-                                    <span> Email </span>
-                                    <span class="menu-arrow"></span>
-                                </a>
-                                <div class="collapse" id="sidebarEmail">
-                                    <ul class="nav-second-level">
-                                        <li>
-                                            <a href="email-inbox.html">Inbox</a>
-                                        </li>
-                                        <li>
-                                            <a href="email-read.html">Read Email</a>
-                                        </li>
-                                        <li>
-                                            <a href="email-compose.html">Compose Email</a>
-                                        </li>
-                                        <li>
-                                            <a href="email-templates.html">Email Templates</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
+        <li>
+            <a href="#sidebarEmail" data-bs-toggle="collapse">
+                <i class="mdi mdi-email-multiple-outline"></i>
+                <span> Supplier Manage </span>
+                <span class="menu-arrow"></span>
+            </a>
+            <div class="collapse" id="sidebarEmail">
+                <ul class="nav-second-level">
+            <li>
+                <a href="{{ route('all-supplier') }}">All Supplier</a>
+            </li>
+            <li>
+                <a href="{{ route('add-supplier') }}">Add Supplier</a>
+            </li>
+                </ul>
+            </div>
+        </li>
+
+        <li>
+            <a href="#salary" data-bs-toggle="collapse">
+                <i class="mdi mdi-email-multiple-outline"></i>
+                <span>Employee Salary</span>
+                <span class="menu-arrow"></span>
+            </a>
+            <div class="collapse" id="salary">
+                <ul class="nav-second-level">
+            <li>
+                <a href="{{ route('add-advance-salary') }}">Add Advance Salary</a>
+            </li>
+            <li>
+                <a href="{{ route('all-advance-salary') }}">All Advance Salary</a>
+            </li>
+            <li>
+                <a href="{{ route('pay-salary') }}">Pay Salary</a>
+            </li>
+            <li>
+                <a href="{{ route('month-salary') }}">Last Month Salary</a>
+            </li>
+                </ul>
+            </div>
+        </li>
+
+        
+        <li>
+            <a href="#attendance" data-bs-toggle="collapse">
+                <i class="mdi mdi-email-multiple-outline"></i>
+                <span>Employee Attendance</span>
+                <span class="menu-arrow"></span>
+            </a>
+            <div class="collapse" id="attendance">
+                <ul class="nav-second-level">
+            <li>
+                <a href="{{ route('employee-attendance-list') }}">Employee Attendance List</a>
+            </li>
+                </ul>
+            </div>
+        </li>
+
 
 
                             <li class="menu-title mt-2">Custom</li>

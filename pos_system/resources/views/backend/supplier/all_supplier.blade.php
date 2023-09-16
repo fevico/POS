@@ -13,11 +13,11 @@
                 <div class="page-title-right">
                     <ol class="breadcrumb m-0">
 
-                    <a href="{{ route('add-employee') }}" class="btn btn-primary rounded-pill waves-effect waves-light">Add Employee</a>
+                    <a href="{{ route('add-supplier') }}" class="btn btn-primary rounded-pill waves-effect waves-light">Add Supplier</a>
 
                     </ol>
                 </div>
-                <h4 class="page-title">All Employee</h4>
+                <h4 class="page-title">All Supplier</h4>
             </div>
         </div>
     </div>     
@@ -36,24 +36,28 @@
                         <th>Name</th>
                         <th>Email</th>
                         <th>Phone</th>
-                        <th>Salary</th>
+                        <th>Type</th>
                         <th>Action</th>
                     </tr>
                 </thead>
             
 
     <tbody>
-        @foreach($employee as $key=> $item)
+        @foreach($supplier as $key=> $item)
         <tr>
             <td>{{ $key+1}}</td>
             <td><img src="{{ asset($item->image) }}" alt="" style="width:50px; height:40px;"></td>
             <td>{{ $item->name }}</td>
             <td>{{ $item->email }}</td>
             <td>{{ $item->phone }}</td>
-            <td>{{ $item->salary }}</td>
+            <td>{{ $item->type }}</td>
             <td>
-                <a href="{{ route('edit-employee',$item->id) }}" class="btn btn-blue rounded-pill waves-effect waves-light">Edit</a>
-                <a href="{{ route('delete-employee',$item->id) }}" class="btn btn-danger rounded-pill waves-effect waves-light" id="delete">Delete</a>
+                <a href="{{ route('edit-supplier',$item->id) }}" class="btn btn-blue rounded-pill waves-effect waves-light" >
+                    <i class="fa fa-pencil" aria-hidden="true" title="Edit"></i></a>
+                <a href="{{ route('details-supplier',$item->id) }}" class="btn btn-info rounded-pill waves-effect waves-light">
+                    <i class="fa fa-eye" aria-hidden="true" title="Details"></i></a>
+                <a href="{{ route('delete-supplier',$item->id) }}" class="btn btn-danger rounded-pill waves-effect waves-light" id="delete">
+                <i class="fa fa-trash" aria-hidden="true" title="Delete"></i></i></a>
             </td>
         </tr>
         @endforeach

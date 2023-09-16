@@ -13,11 +13,11 @@
                 <div class="page-title-right">
                     <ol class="breadcrumb m-0">
 
-                    <a href="{{ route('add-employee') }}" class="btn btn-primary rounded-pill waves-effect waves-light">Add Employee</a>
+                    <a href="{{ route('add-advance-salary') }}" class="btn btn-primary rounded-pill waves-effect waves-light">Add Advance Salary</a>
 
                     </ol>
                 </div>
-                <h4 class="page-title">All Employee</h4>
+                <h4 class="page-title">All Advance Salary</h4>
             </div>
         </div>
     </div>     
@@ -34,25 +34,31 @@
                         <th>S/N</th>
                         <th>Image</th>
                         <th>Name</th>
-                        <th>Email</th>
-                        <th>Phone</th>
+                        <th>Month</th>
                         <th>Salary</th>
+                        <th>Advance</th>
                         <th>Action</th>
                     </tr>
                 </thead>
             
 
     <tbody>
-        @foreach($employee as $key=> $item)
+        @foreach($salary as $key=> $item)
         <tr>
             <td>{{ $key+1}}</td>
-            <td><img src="{{ asset($item->image) }}" alt="" style="width:50px; height:40px;"></td>
-            <td>{{ $item->name }}</td>
-            <td>{{ $item->email }}</td>
-            <td>{{ $item->phone }}</td>
-            <td>{{ $item->salary }}</td>
+            <td><img src="{{ asset($item->employee->image) }}" alt="" style="width:50px; height:40px;"></td>
+            <td>{{ $item['employee']['name'] }}</td>
+            <td>{{ $item->month }}</td>
+            <td>{{ $item['employee']['salary'] }}</td>
             <td>
-                <a href="{{ route('edit-employee',$item->id) }}" class="btn btn-blue rounded-pill waves-effect waves-light">Edit</a>
+            @if($item->advance_salary == NULL)
+                    <p>No Advance</p>
+                @else 
+                    {{ $item->advance_salary }}
+                @endif
+            </td>
+            <td>
+                <a href="{{ route('edit-advance-salary',$item->id) }}" class="btn btn-blue rounded-pill waves-effect waves-light">Edit</a>
                 <a href="{{ route('delete-employee',$item->id) }}" class="btn btn-danger rounded-pill waves-effect waves-light" id="delete">Delete</a>
             </td>
         </tr>

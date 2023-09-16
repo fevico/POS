@@ -13,11 +13,11 @@
                 <div class="page-title-right">
                     <ol class="breadcrumb m-0">
 
-                    <a href="{{ route('add-employee') }}" class="btn btn-primary rounded-pill waves-effect waves-light">Add Employee</a>
+                    <a href="{{ route('add-cutomer') }}" class="btn btn-primary rounded-pill waves-effect waves-light">Add Customer</a>
 
                     </ol>
                 </div>
-                <h4 class="page-title">All Employee</h4>
+                <h4 class="page-title">All Customer</h4>
             </div>
         </div>
     </div>     
@@ -36,24 +36,24 @@
                         <th>Name</th>
                         <th>Email</th>
                         <th>Phone</th>
-                        <th>Salary</th>
+                        <th>ShopName</th>
                         <th>Action</th>
                     </tr>
                 </thead>
             
 
     <tbody>
-        @foreach($employee as $key=> $item)
+        @foreach($customer as $key=> $item)
         <tr>
             <td>{{ $key+1}}</td>
             <td><img src="{{ asset($item->image) }}" alt="" style="width:50px; height:40px;"></td>
             <td>{{ $item->name }}</td>
             <td>{{ $item->email }}</td>
             <td>{{ $item->phone }}</td>
-            <td>{{ $item->salary }}</td>
+            <td>{{ $item->shopname }}</td>
             <td>
-                <a href="{{ route('edit-employee',$item->id) }}" class="btn btn-blue rounded-pill waves-effect waves-light">Edit</a>
-                <a href="{{ route('delete-employee',$item->id) }}" class="btn btn-danger rounded-pill waves-effect waves-light" id="delete">Delete</a>
+                <a href="{{ route('edit-customer',$item->id) }}" class="btn btn-blue rounded-pill waves-effect waves-light">Edit</a>
+                <a href="{{ route('delete-customer',$item->id) }}" class="btn btn-danger rounded-pill waves-effect waves-light" id="delete">Delete</a>
             </td>
         </tr>
         @endforeach

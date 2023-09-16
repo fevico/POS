@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
-
+ 
 
 class AdminController extends Controller
 {
@@ -52,7 +52,7 @@ class AdminController extends Controller
             $file->move(public_path('upload/admin_image'),$filename);
             $data['photo'] = $filename; 
         }
-            $data->save();
+            $data->save(); 
             $notification = array(
                 'message' => 'Admin Profile Updated Successfully',
                 'alert-type' => 'success'

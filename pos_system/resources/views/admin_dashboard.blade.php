@@ -30,6 +30,10 @@
 
         <!-- toaster css-->
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
+        <!-- font awsome -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+         crossorigin="anonymous" referrerpolicy="no-referrer" />
+         
         <!-- Head js -->
         <script src="{{ asset('backend/assets/js/head.js') }}"></script>
 
@@ -44,10 +48,10 @@
             
             <!-- Topbar Start -->
          @include('body.header')
-            <!-- end Topbar -->
+            <!-- end Topbar --> 
 
             <!-- ========== Left Sidebar Start ========== -->
-            @include('body.sidebar')
+        @include('body.sidebar')
             <!-- Left Sidebar End -->
 
             <!-- ============================================================== -->
@@ -55,11 +59,11 @@
             <!-- ============================================================== -->
 
             <div class="content-page">
-              @yield('admin')
+        @yield('admin')
                 <!-- content -->
 
                 <!-- Footer Start -->
-               @include('body.footer')
+        @include('body.footer')
                 <!-- end Footer -->
 
             </div>
@@ -112,6 +116,11 @@
 
         <!-- App js-->
         <script src="{{ asset('backend/assets/js/app.min.js') }}"></script>
+        <!-- sweet alart -->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+        <script src="{{ asset('backend/assets/js/code.js') }}"></script>
+
 <!-- toaster js -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 

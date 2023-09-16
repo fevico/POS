@@ -13,11 +13,11 @@
                 <div class="page-title-right">
                     <ol class="breadcrumb m-0">
 
-                    <a href="{{ route('add-employee') }}" class="btn btn-primary rounded-pill waves-effect waves-light">Add Employee</a>
+                    <a href="{{ route('add-employee-attend') }}" class="btn btn-primary rounded-pill waves-effect waves-light">Add Employee Attendance</a>
 
                     </ol>
                 </div>
-                <h4 class="page-title">All Employee</h4>
+                <h4 class="page-title">All Employee Attendance</h4>
             </div>
         </div>
     </div>     
@@ -32,28 +32,20 @@
                 <thead>
                     <tr>
                         <th>S/N</th>
-                        <th>Image</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Phone</th>
-                        <th>Salary</th>
+                        <th>Date</th>
                         <th>Action</th>
                     </tr>
                 </thead>
             
 
     <tbody>
-        @foreach($employee as $key=> $item)
+        @foreach($allData as $key=> $item)
         <tr>
             <td>{{ $key+1}}</td>
-            <td><img src="{{ asset($item->image) }}" alt="" style="width:50px; height:40px;"></td>
-            <td>{{ $item->name }}</td>
-            <td>{{ $item->email }}</td>
-            <td>{{ $item->phone }}</td>
-            <td>{{ $item->salary }}</td>
+            <td>{{ date("Y-m-d", strtotime($item->date)) }}</td>
             <td>
-                <a href="{{ route('edit-employee',$item->id) }}" class="btn btn-blue rounded-pill waves-effect waves-light">Edit</a>
-                <a href="{{ route('delete-employee',$item->id) }}" class="btn btn-danger rounded-pill waves-effect waves-light" id="delete">Delete</a>
+                <a href="" class="btn btn-blue rounded-pill waves-effect waves-light">Edit</a>
+                <a href="" class="btn btn-danger rounded-pill waves-effect waves-light">View</a>
             </td>
         </tr>
         @endforeach
