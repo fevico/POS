@@ -22,6 +22,8 @@ class AttendanceController extends Controller
     }
 
     public function EmployeeAttendanceStore( Request $request){
+        Attendance::where('date', date('Y-m-d', strtotime($request->date)))->delete();
+        
         $countemployee = count($request->employee_id);
         for($i=0; $i < $countemployee; $i++){
             $attendance_status = 'attend_status'.$i;
@@ -36,5 +38,11 @@ class AttendanceController extends Controller
             'alert-type' => 'success'
              ); 
         return redirect()->route('employee-attendance-list')->with($notification);
+    }
+
+    public function EmployeeAttendanceEdit($date){
+        $employees = Employee::all();
+        $editdata = Attendance::where('date',$date)->get();
+        return view('backend.attendance.edit_employee_attend', compact('employees', 'editdata'));
     }
 }

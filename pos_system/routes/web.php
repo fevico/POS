@@ -94,6 +94,7 @@ Route::controller(AttendanceController::class)->group(function(){
     Route::get('/employee/attendance/list', 'EmployeeAttendanceList')->name('employee-attendance-list');
     Route::get('/add/employee/attend', 'AddEmployeeAttendance')->name('add-employee-attend');
     Route::post('/employee/attend/store', 'EmployeeAttendanceStore')->name('employee-attendance-store');
+    Route::get('/employee/attend/edit/{date}', 'EmployeeAttendanceEdit')->name('employee-attend-edit');
 });
 
 }); 
