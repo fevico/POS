@@ -119,6 +119,38 @@
             </div>
         </li>
 
+        <li>
+            <a href="#category" data-bs-toggle="collapse">
+                <i class="mdi mdi-email-multiple-outline"></i>
+                <span>Category</span>
+                <span class="menu-arrow"></span>
+            </a>
+            <div class="collapse" id="category">
+                <ul class="nav-second-level">
+            <li>
+                <a href="{{ route('all-category') }}">All Category</a>
+            </li>
+                </ul>
+            </div>
+        </li>
+
+        <li>
+            <a href="#products" data-bs-toggle="collapse">
+                <i class="mdi mdi-email-multiple-outline"></i>
+                <span>Products</span>
+                <span class="menu-arrow"></span>
+            </a>
+            <div class="collapse" id="products">
+                <ul class="nav-second-level">
+            <li>
+                <a href="{{ route('all-product') }}">All Products</a>
+            </li>
+            <li>
+                <a href="{{ route('add-product') }}">Add Products</a>
+            </li>
+                </ul>
+            </div>
+        </li>
 
 
                             <li class="menu-title mt-2">Custom</li>

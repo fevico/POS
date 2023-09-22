@@ -26,7 +26,7 @@ class AttendanceController extends Controller
         
         $countemployee = count($request->employee_id);
         for($i=0; $i < $countemployee; $i++){
-            $attendance_status = 'attend_status'.$i;
+            $attendance_status = 'attend_status'.$i; 
             $attend = new Attendance();
             $attend->date = date('Y-m-d', strtotime($request->date));
             $attend->employee_id = $request->employee_id[$i];
@@ -44,5 +44,10 @@ class AttendanceController extends Controller
         $employees = Employee::all();
         $editdata = Attendance::where('date',$date)->get();
         return view('backend.attendance.edit_employee_attend', compact('employees', 'editdata'));
+    }
+
+    public function EmployeeAttendanceView($date){
+        $details = Attendance::where('date',$date)->get();
+        return view('backend.attendance.details_employee_attend', compact('details'));  
     }
 }

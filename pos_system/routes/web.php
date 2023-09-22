@@ -8,6 +8,8 @@ use App\Http\Controllers\Backend\CustomerController;
 use App\Http\Controllers\Backend\SupplierController;
 use App\Http\Controllers\Backend\SalaryController;
 use App\Http\Controllers\Backend\AttendanceController;
+use App\Http\Controllers\Backend\CatrgoryController;
+use App\Http\Controllers\Backend\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -95,6 +97,25 @@ Route::controller(AttendanceController::class)->group(function(){
     Route::get('/add/employee/attend', 'AddEmployeeAttendance')->name('add-employee-attend');
     Route::post('/employee/attend/store', 'EmployeeAttendanceStore')->name('employee-attendance-store');
     Route::get('/employee/attend/edit/{date}', 'EmployeeAttendanceEdit')->name('employee-attend-edit');
+    Route::get('/employee/attend/view/{date}', 'EmployeeAttendanceView')->name('employee-attend-view');
+});
+// category all route 
+Route::controller(CatrgoryController::class)->group(function(){
+    Route::get('/all/category', 'AllCategory')->name('all-category');
+    Route::post('/add/category', 'AddCategory')->name('add-category');
+    Route::get('/edit/category/{id}', 'EditCategory')->name('edit-category');
+    Route::post('/update/category', 'CategoryUpdate')->name('category-update');
+    Route::get('/delete/category/{id}', 'CategoryDelete')->name('delete-category');
+});
+// all product route 
+Route::controller(ProductController::class)->group(function(){
+    Route::get('/all/product', 'AllProduct')->name('all-product');
+    Route::get('/add/product', 'AddProduct')->name('add-product');
+    Route::post('/store/product', 'StoreProduct')->name('product-store');
+    Route::get('/edit/product/{id}', 'EditProduct')->name('edit-product');
+    Route::post('/update/product', 'UpdateProduct')->name('product-update');
+    Route::get('/delete/product/{id}', 'DeleteProduct')->name('delete-product');
+    Route::get('/barcode/product/{id}', 'BarcodeProduct')->name('barcode-product');
 });
 
 }); 
