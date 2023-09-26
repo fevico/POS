@@ -9,7 +9,7 @@
    cursor: pointer;
    }
    .switch-candy a{
-   border: 1px solid #333;
+   border: 1px solid #333; 
    border-radius: 3px;
    background-color: white;
    background-image: -webkit-linear-gradient(top,rgba(255, 255, 255, 0.2), transparent);

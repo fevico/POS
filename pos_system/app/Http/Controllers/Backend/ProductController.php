@@ -10,6 +10,10 @@ use App\MOdels\Category;
 use Intervention\Image\Facades\Image;
 use Carbon\Carbon;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
+use App\Exports\ProductExport;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\ProductImport;
+
 
 class ProductController extends Controller
 {
@@ -134,6 +138,25 @@ public function DeleteProduct($id){
 public function BarcodeProduct($id){
     $product = Product::findOrFail($id);
     return view('backend.product.add_barcode', compact('product'));  
+}
+
+public function ImportProduct(){
+    return view('backend.product.import_product');
+}
+
+public function Export(){
+    return Excel::download(new ProductExport,'products.xlsx');
+}
+
+public function Import(Request $request){
+    Excel::import(new ProductImport, $request->file('import_file'));
+
+    
+    $notification = array(
+        'message' => 'Product Imported Successfully',
+        'alert-type' => 'success'
+         );  
+    return redirect()->back()->with($notification);
 }
 
 }
