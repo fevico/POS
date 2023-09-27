@@ -76,15 +76,16 @@
             </div>
             <br>
 
-            <form action="">
+            <form action="{{ url('/create-invoice') }}" method="post" id="myForm">
+
+            @csrf
     
             <div class="form-group mb-3">
                 <label for="firstname" class="form-label">All Customer</label>
 
     <a href="{{ route('add-cutomer') }}" class="btn btn-danger rounded-pill waves-effect waves-light mb-2">Add Customer</a>
 
-        <select name="supplier_id" class="form-select" id="example-select">
-             <option selected>Selecr Here</option>
+        <select name="customer_id" class="form-select" id="example-select">
                 <option selected disabled>Select Customer</option>
                 @foreach($customer as $cust)
                 <option value="{{ $cust->id }}">{{ $cust->name}}</option>
@@ -159,5 +160,36 @@
 </div> <!-- container -->
 
 </div> 
+
+<script type="text/javascript">
+    $(document).ready(function (){
+        $('#myForm').validate({
+            rules: {
+                customer_id: {
+                    required : true,
+                },
+            },
+
+            messages :{
+                customer_id: {
+                    required : 'Please Select Customer',
+                },
+
+            },
+            errorElement : 'span', 
+            errorPlacement: function (error,element) {
+                error.addClass('invalid-feedback');
+                element.closest('.form-group').append(error);
+            },
+            highlight : function(element, errorClass, validClass){
+                $(element).addClass('is-invalid');
+            },
+            unhighlight : function(element, errorClass, validClass){
+                $(element).removeClass('is-invalid');
+            },
+        });
+    });
+    
+</script>
 
 @endsection 

@@ -12,6 +12,7 @@ use App\Http\Controllers\Backend\CatrgoryController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\ExpenseController;
 use App\Http\Controllers\Backend\PosController;
+use App\Http\Controllers\Backend\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -132,13 +133,19 @@ Route::controller(ExpenseController::class)->group(function(){
     Route::get('/month/expense', 'MonthExpense')->name('month-expense');
     Route::get('/year/expense', 'YearExpense')->name('year-expense');
 });
-
+// pos all route
 Route::controller(PosController::class)->group(function(){
     Route::get('/pos', 'POS')->name('pos');
     Route::post('/add-cart', 'AddCart');
     Route::get('/all/item', 'AllItem');
     Route::post('/cart/update/{rowId}', 'CartUpdate');
     Route::get('/cart-remove/{rowId}', 'CartRemove');
+    Route::post('/create-invoice', 'CreateInvoice');
+});
+
+// order all route 
+Route::controller(OrderController::class)->group(function(){
+    Route::post('/final/invoice', 'FinalInvoice');
 });
 
 }); 

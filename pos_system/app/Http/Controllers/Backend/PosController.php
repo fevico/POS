@@ -34,7 +34,7 @@ class PosController extends Controller
     }
 
     public function AllItem(){
-        $product_item = Cart::content();
+        $product_item = Cart::content(); 
 
         return view('backend.pos.text_item', compact('product_item'));
     }
@@ -60,6 +60,13 @@ class PosController extends Controller
             'alert-type' => 'success'
              ); 
         return redirect()->back()->with($notification);
+    }
+
+    public function CreateInvoice(Request $request){
+       $contents = Cart::content();
+       $cust_id = $request->customer_id;
+       $customer = Customer::where('id',$cust_id)->first();
+       return view('backend.invoice.product_invoice', compact('contents','customer'));
     }
     
 }
