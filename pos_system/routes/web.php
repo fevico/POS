@@ -13,6 +13,7 @@ use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\ExpenseController;
 use App\Http\Controllers\Backend\PosController;
 use App\Http\Controllers\Backend\OrderController;
+use App\Http\Controllers\Backend\RoleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -146,9 +147,49 @@ Route::controller(PosController::class)->group(function(){
 // order all route 
 Route::controller(OrderController::class)->group(function(){
     Route::post('/final/invoice', 'FinalInvoice');
+    Route::get('/pending/order', 'PendingOrder')->name('pending-order');
+    Route::get('/order/details/{order_id}', 'OrderDetails')->name('order-details');
+    Route::post('/order/status/update', 'OrderStatusUpdate')->name('order-status-update');
+    Route::get('/complete/order', 'CompleteOrder')->name('complete-order');
+    Route::get('/stcok', 'StockManage')->name('stock-manage');
+    Route::get('/order/invoice-download/{order_id}', 'OrderInvoice');
+});
+
+// permision all route 
+Route::controller(RoleController::class)->group(function(){
+    Route::get('/all/permission', 'AllPermission')->name('all.permission');
+    Route::get('/add/permission', 'AddPermission')->name('add-permission');
+    Route::post('/store/permission', 'StorePermission')->name('permission-store');
+    Route::get('/edit/permission/{id}', 'EditPermission')->name('edit-permission');
+    Route::post('/update/permission', 'UpdatePermission')->name('permission-update');
+    Route::get('/delete/permission/{id}', 'DeletePermission')->name('delete-permission');
+});
+// all roles
+Route::controller(RoleController::class)->group(function(){
+    Route::get('/all/role', 'AllRoles')->name('all.roles');
+    Route::get('/add/role', 'AddRoles')->name('add-roles');
+    Route::post('/store/role', 'storeRoles')->name('role-store');
+    Route::get('/edit/role/{id}', 'EditRoles')->name('edit-role');
+    Route::post('/update/role', 'UpdateRoles')->name('role-update');
+    Route::get('/delete/role/{id}', 'DeleteRoles')->name('delete-role');
+});
+//add roles in permission 
+Route::controller(RoleController::class)->group(function(){
+    Route::get('/add/role/permission', 'AddRolesPermission')->name('add.roles.permission');
+    Route::post('/store/role/permission', 'StoreRolesPermission')->name('role-permission-store');
+    Route::get('/all/role/permission', 'AllRolesPermission')->name('all.roles.permission');
+    Route::get('/admin/edit/roles/{id}', 'AdminEditRoles')->name('admin-edit-roles');
+    Route::post('/role/permission/update/{id}', 'RolePermissionUpdate')->name('role-permission-update');
+    Route::get('/role/permission/delete/{id}', 'RolePermissionDelete')->name('admin-delete-roles');
+});
+
+// admin usert all route 
+Route::controller(AdminController::class)->group(function(){
+    Route::get('/all/admin', 'AllAdmin')->name('all.admin');
 });
 
 }); 
+
 // end usert middleware 
 
 require __DIR__.'/auth.php';

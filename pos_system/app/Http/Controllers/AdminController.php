@@ -93,7 +93,12 @@ public function UpdatePassword(Request $request){
         'alert-type' => 'success'
          ); 
         return back()->with($notification);
+}
 
+// admin user all method 
+public function AllAdmin(){
+    $user = User::latest()->get();
+    return view('backend.admin.all_admin', compact('user'));
 }
 
 }

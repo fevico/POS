@@ -163,6 +163,86 @@
             </div>
         </li>
 
+        
+        <li>
+            <a href="#order" data-bs-toggle="collapse">
+                <i class="mdi mdi-email-multiple-outline"></i>
+                <span>Orders</span>
+                <span class="menu-arrow"></span>
+            </a>
+            <div class="collapse" id="order">
+                <ul class="nav-second-level">
+            <li>
+                <a href="{{ route('pending-order') }}">Pending Orders</a>
+            </li>
+            <li>
+                <a href="{{ route('complete-order') }}">Complete Orders</a>
+            </li>
+                </ul>
+            </div>
+        </li>
+
+        
+        <li>
+            <a href="#stock" data-bs-toggle="collapse">
+                <i class="mdi mdi-email-multiple-outline"></i>
+                <span>Stock Manage</span>
+                <span class="menu-arrow"></span>
+            </a>
+            <div class="collapse" id="stock">
+                <ul class="nav-second-level">
+            <li>
+                <a href="{{ route('stock-manage') }}">Stock</a>
+            </li>
+                </ul>
+            </div>
+        </li>
+
+           
+        <li>
+            <a href="#permission" data-bs-toggle="collapse">
+                <i class="mdi mdi-email-multiple-outline"></i>
+                <span>Roles And Permission</span>
+                <span class="menu-arrow"></span>
+            </a>
+            <div class="collapse" id="permission">
+                <ul class="nav-second-level">
+            <li>
+                <a href="{{ route('all.permission') }}">All Permission</a>
+            </li>
+            <li>
+                <a href="{{ route('all.roles') }}">All Roles</a>
+            </li>
+            <li>
+                <a href="{{ route('add.roles.permission') }}">Roles In Permission</a>
+            </li>
+            <li>
+                <a href="{{ route('all.roles.permission') }}">All Roles In Permission</a>
+            </li>
+                </ul>
+            </div>
+        </li>
+
+
+        <li>
+            <a href="#admin" data-bs-toggle="collapse">
+                <i class="mdi mdi-email-multiple-outline"></i>
+                <span>Setting Admin User</span>
+                <span class="menu-arrow"></span>
+            </a>
+            <div class="collapse" id="admin">
+                <ul class="nav-second-level">
+            <li>
+                <a href="{{ route('all.admin') }}">All Admin</a>
+            </li>
+            <li>
+                <a href="{{ route('all.roles') }}">Add Admin</a>
+            </li>
+                </ul>
+            </div>
+        </li>
+
+
         <li>
             <a href="#sidebarAuth" data-bs-toggle="collapse">
                 <i class="mdi mdi-account-circle-outline"></i>

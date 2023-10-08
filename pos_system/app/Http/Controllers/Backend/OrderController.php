@@ -5,9 +5,12 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Order;
+use App\Models\Product;
 use App\Models\Orderdetails;
 use Carbon\Carbon;
 use Gloudemans\Shoppingcart\Facades\Cart;
+use Barryvdh\DomPDF\Facade\Pdf;
+use DB;
 
 class OrderController extends Controller
 {
@@ -46,7 +49,61 @@ class OrderController extends Controller
              ); 
 
              Cart::destroy();
-             
+
         return redirect()->route('dashboard')->with($notification);
+    }
+
+    public function PendingOrder(){
+      $order = Order::where('order_status',"Pending")->get();
+      return view('backend.order.pending_order',compact('order'));
+    }
+
+    public function OrderDetails($order_id){
+        $order = Order::where('id',$order_id)->first();
+        $order_item = Orderdetails::with('product')->where('order_id',$order_id)->orderBy('id','DESC')->get();
+        return view('backend.order.order_details', compact('order', 'order_item')); 
+    }
+
+    public function OrderStatusUpdate(Request $request){
+        $order_id = $request->id;
+
+        $product = OrderDetails::where('order_id',$order_id)->get();
+        foreach($product as $item){
+            product::where('id',$item->product_id)
+            ->update(['product_store' => DB::raw('product_store-'.$item->quantity)]);
+        }
+
+        Order::findOrFail($order_id)->update([
+            'order_status' => "Completed",
+        ]);
+
+        $notification = array(
+            'message' => 'Order Updated Successfully',
+            'alert-type' => 'success'
+             ); 
+
+        return redirect()->route('pending-order')->with($notification);
+    }
+
+    public function CompleteOrder(){
+        $order = Order::where('order_status',"Completed")->get();
+        return view('backend.order.complete_order', compact('order'));
+    }
+
+    public function StockManage(){
+        $product = Product::latest()->get();
+        return view('backend.stock.all_stock', compact('product'));
+    }
+
+    public function OrderInvoice($order_id){
+        $order = Order::where('id',$order_id)->first();
+        $orderItem = Orderdetails::with('product')->where('order_id',$order_id)->orderBy('id','DESC')->get();
+
+        $pdf = Pdf::loadView('backend.order.oder_invoice', compact('order','orderItem'))->setPaper('a4')->setOption([
+                'tempDir' => public_path(),
+                'chroot' => public_path(),
+        ]);
+
+        return $pdf->download('invoice.pdf');
     }
 }
