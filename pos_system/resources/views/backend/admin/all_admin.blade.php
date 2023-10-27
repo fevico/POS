@@ -13,7 +13,7 @@
                 <div class="page-title-right">
                     <ol class="breadcrumb m-0">
 
-        <a href="{{ route('add-cutomer') }}" class="btn btn-primary rounded-pill waves-effect waves-light">Add Admin</a>
+        <a href="{{ route('add-admin') }}" class="btn btn-primary rounded-pill waves-effect waves-light">Add Admin</a>
 
                     </ol>
                 </div>
@@ -49,12 +49,16 @@
             <td><img src="{{ (!empty($item->photo)) ? url('upload/admin_image/'.$item->photo) : 
                         url('upload/no_image.jpg')}}" alt="" style="width:50px; height:40px;"></td>
             <td>{{ $item->name }}</td>
-            <td>{{ $item->email }}</td>
+            <td>{{ $item->email }}</td> 
             <td>{{ $item->phone }}</td>
-            <td>Role</td>
             <td>
-                <a href="{{ route('edit-customer',$item->id) }}" class="btn btn-blue rounded-pill waves-effect waves-light">Edit</a>
-                <a href="{{ route('delete-customer',$item->id) }}" class="btn btn-danger rounded-pill waves-effect waves-light" id="delete">Delete</a>
+                @foreach($item->roles as $role)
+                <span class="badge badge-pill bg-danger">{{ $role->name }}</span>
+                @endforeach
+            </td>
+            <td>
+                <a href="{{ route('edit-admin',$item->id) }}" class="btn btn-blue rounded-pill waves-effect waves-light">Edit</a>
+                <a href="{{ route('delete-admin',$item->id) }}" class="btn btn-danger rounded-pill waves-effect waves-light" id="delete">Delete</a>
             </td>
         </tr>
         @endforeach

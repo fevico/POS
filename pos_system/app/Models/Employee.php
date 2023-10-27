@@ -9,7 +9,7 @@ class Employee extends Model
 {
     use HasFactory;
     protected $guarded = [];
-
+ 
     public function advance(){
         return $this->belongsTo(AdvanceSalary::class, 'id', 'employee_id');
     }

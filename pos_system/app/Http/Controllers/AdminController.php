@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
+use File;
+use Illuminate\Support\Facades\Storage;
  
 
 class AdminController extends Controller
@@ -99,6 +103,102 @@ public function UpdatePassword(Request $request){
 public function AllAdmin(){
     $user = User::latest()->get();
     return view('backend.admin.all_admin', compact('user'));
+}
+
+public function AddAdmin(){
+    $roles = Role::all();
+    return view('backend.admin.add_admin', compact('roles'));
+}
+
+public function StoreAdmin(Request $request){
+    $user = new User();
+    $user->name = $request->name;
+    $user->email = $request->email;
+    $user->phone = $request->phone;
+    $user->password = Hash::make($request->password);
+    $user->save();
+
+    if($request->roles){
+        $user->assignRole($request->roles);
+    }
+
+    $notification = array(
+        'message' => 'New Admin Created Successfully',
+        'alert-type' => 'success'
+         ); 
+        return redirect()->route('all.admin')->with($notification);
+}
+
+public function EditAdmin($id){
+    $roles = Role::all();
+    $adminUser = User::findOrFail($id);
+    return view('backend.admin.edit_admin', compact('roles','adminUser'));  
+}
+
+public function UpdateAdmin(Request $request){
+    $admin_id = $request->id;
+
+    $user = User::findOrFail($admin_id);
+    $user->name = $request->name;
+    $user->email = $request->email;
+    $user->phone = $request->phone;
+    $user->save();
+
+    $user->roles()->detach();
+    if($request->roles){
+        $user->assignRole($request->roles);
+    }
+
+    $notification = array(
+        'message' => 'Admin Updated Successfully',
+        'alert-type' => 'success'
+    ); 
+    return redirect()->route('all.admin')->with($notification);
+}
+
+public function DeleteAdmin($id){
+    $user = User::findOrFail($id);
+    if(!is_null($user)){
+        $user->delete();
+    }
+    
+    $notification = array(
+        'message' => 'Admin Deleted Successfully',
+        'alert-type' => 'success'
+    ); 
+    return redirect()->back()->with($notification);
+}
+
+// database backup
+public function DatabaseBackup(){
+    return view('admin.db_backup')->with('files',File::allFiles(storage_path('/app/Fevico')));
+}
+
+public function BackupNow(){
+    \Artisan::call('backup:run');
+
+    
+    $notification = array(
+        'message' => 'Database Backup Successfully',
+        'alert-type' => 'success'
+    ); 
+    return redirect()->back()->with($notification);
+}
+
+public function DownloadDatabase($getFilename){
+    $path = storage_path('app\Fevico/'.$getFilename);
+    return response()->download($path);
+}
+
+public function DeleteDatabase($getFilename){
+    Storage::delete('Fevico/'.$getFilename);
+
+    
+    $notification = array(
+        'message' => 'Database Deleted Successfully',
+        'alert-type' => 'success'
+    ); 
+    return redirect()->back()->with($notification);
 }
 
 }

@@ -36,7 +36,7 @@
                 <thead>
                     <tr>
                         <th>S/N</th>
-                        <th>Image</th>
+                        <th>Image</th> 
                         <th>Name</th>
                         <th>Category</th>
                         <th>Supplier</th>

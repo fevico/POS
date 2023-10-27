@@ -13,11 +13,11 @@
                 <div class="page-title-right">
                     <ol class="breadcrumb m-0">
 
-                    <a href="{{ route('add-employee') }}" class="btn btn-primary rounded-pill waves-effect waves-light">Add Employee</a>
+                    <a href="{{ url('backup/now') }}" class="btn btn-primary rounded-pill waves-effect waves-light">Backup Now</a>
 
                     </ol>
                 </div>
-                <h4 class="page-title">All Employee</h4>
+                <h4 class="page-title">All Backup</h4>
             </div>
         </div>
     </div>     
@@ -32,33 +32,26 @@
                 <thead>
                     <tr>
                         <th>S/N</th>
-                        <th>Image</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Phone</th>
-                        <th>Salary</th>
+                        <th>File Name</th>
+                        <th>Size</th>
+                        <th>Path</th>
                         <th>Action</th>
                     </tr>
                 </thead>
             
 
     <tbody>
-        @foreach($employee as $key=> $item)
+        @foreach($files as $key=> $item)
         <tr>
             <td>{{ $key+1}}</td>
-            <td><img src="{{ asset($item->image) }}" alt="" style="width:50px; height:40px;"></td>
-            <td>{{ $item->name }}</td>
-            <td>{{ $item->email }}</td>
-            <td>{{ $item->phone }}</td>
-            <td>{{ $item->salary }}</td>
+            <td>{{ $item->getFilename() }}</td>
+            <td>{{ $item->getSize() }}</td>
+            <td>{{ $item->getPath() }}</td>
             <td>
-            @if(Auth::user()->can('employee.edit'))
-                <a href="{{ route('edit-employee',$item->id) }}" class="btn btn-blue rounded-pill waves-effect waves-light">Edit</a>
-            @endif
-            @if(Auth::user()->can('employee.delete'))
-                <a href="{{ route('delete-employee',$item->id) }}" class="btn btn-danger rounded-pill waves-effect waves-light" 
+                <a href=" {{ url($item->getFilename() ) }} " class="btn btn-blue rounded-pill waves-effect waves-light">Download</a>
+                
+                <a href="{{ url('delete/database/'.$item->getFilename()) }}" class="btn btn-danger rounded-pill waves-effect waves-light" 
                 id="delete">Delete</a>
-                @endif
             </td>
         </tr>
         @endforeach

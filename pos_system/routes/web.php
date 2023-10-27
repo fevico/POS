@@ -53,8 +53,8 @@ Route::post('/update/password', [AdminController::class, 'UpdatePassword'])->nam
 
 // all emplyee route 
 Route::controller(EmployeeController::class)->group(function(){
-Route::get('/all/employee', 'AllEmployee')->name('all-employee');
-Route::get('/add/employee', 'AddEmployee')->name('add-employee');
+Route::get('/all/employee', 'AllEmployee')->name('all-employee')->middleware('permission::employee.all');
+Route::get('/add/employee', 'AddEmployee')->name('add-employee')->middleware('permission::employee.add');
 Route::post('/store/employee', 'StoreEmployee')->name('employee-store');
 Route::get('/edit/employee/{id}', 'EditEmployee')->name('edit-employee');
 Route::post('/update/employee', 'UpdateEmployee')->name('employee-update');
@@ -63,7 +63,7 @@ Route::get('/delete/employee/{id}', 'DeleteEmployee')->name('delete-employee');
 
 // customer all route 
 Route::controller(CustomerController::class)->group(function(){
-    Route::get('/all/customer', 'AllCustomer')->name('all-customer');
+    Route::get('/all/customer', 'AllCustomer')->name('all-customer')->middleware('permission::customer.all');;
     Route::get('/add/customer', 'AddCustomer')->name('add-cutomer');
     Route::post('/store/customer', 'StoreCustomer')->name('customer-store');
     Route::get('/edit/customer/{id}', 'EditCustomer')->name('edit-customer');
@@ -186,6 +186,17 @@ Route::controller(RoleController::class)->group(function(){
 // admin usert all route 
 Route::controller(AdminController::class)->group(function(){
     Route::get('/all/admin', 'AllAdmin')->name('all.admin');
+    Route::get('/add/admin', 'AddAdmin')->name('add-admin');
+    Route::post('/store/admin', 'StoreAdmin')->name('admin-store');
+    Route::get('/edit/admin/{id}', 'EditAdmin')->name('edit-admin');
+    Route::post('/update/admin', 'UpdateAdmin')->name('admin-update');
+    Route::get('/delete/admin/{id}', 'DeleteAdmin')->name('delete-admin');
+
+    // database backup
+    Route::get('/database/basebackup', 'DatabaseBackup')->name('database-backup');
+    Route::get('/backup/now', 'BackupNow');
+    Route::get('{getFilename}', 'DownloadDatabase');
+    Route::get('/delete/database/{getFilename}', 'DeleteDatabase');
 });
 
 }); 
